@@ -1,0 +1,18 @@
+sudo: required
+dist: trusty
+group: stable
+
+services:
+  - docker
+
+script:
+  - docker build --pull --tag "strider2038/php-cli-dev" .
+  - docker images
+
+deploy:
+  script:
+    - docker login -u "$DOCKER_LOGIN" -p "$DOCKER_PASSWORD";
+    - docker push strider2038/php-cli-dev
+  on:
+    branch:
+      - master
