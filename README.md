@@ -1,2 +1,6 @@
-# docker-php-cli-dev
-Docker image for developing purposes by PHP CLI
+# Docker PHP CLI
+
+Docker image for PHP CLI with developing tools
+
+* composer
+* xdebug

@@ -10,9 +10,8 @@ script:
   - docker images
 
 deploy:
-  script:
-    - docker login -u "$DOCKER_LOGIN" -p "$DOCKER_PASSWORD";
-    - docker push strider2038/php-cli-dev
+  provider: script
+  script: bash deploy.sh
   on:
     branch:
       - master
