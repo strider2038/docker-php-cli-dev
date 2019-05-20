@@ -1,4 +1,4 @@
-FROM php:7.2-cli-alpine
+FROM php:7.3-cli-alpine
 
 ENV COMPOSER_HOME=/var/run/composer \
     XDEBUG_CONFIG="remote_enable=1 remote_mode=req remote_port=9001 remote_host=172.17.0.1 remote_log=/app/var/xdebug.log" \
