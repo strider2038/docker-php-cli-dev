@@ -24,9 +24,16 @@ RUN set -xe \
         bcmath \
         mbstring \
         intl \
+    && runDeps="$( \
+        scanelf --needed --nobanner --format '%n#p' --recursive /usr/local/lib/php/extensions \
+            | tr ',' '\n' \
+            | sort -u \
+            | awk 'system("[ -e /usr/local/lib/" $1 " ]") == 0 { next } { print "so:" $1 }' \
+    )" \
+    && apk add --no-cache --virtual .php-phpexts-rundeps $runDeps \
+    && apk del .build-deps \
     && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer \
-    && chmod -R 0777 $COMPOSER_HOME \
-    && apk del .build-deps
+    && chmod -R 0777 $COMPOSER_HOME
 
 COPY ./.docker /
 
