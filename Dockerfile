@@ -6,20 +6,27 @@ ENV COMPOSER_HOME=/var/run/composer \
 
 RUN set -xe \
     && apk add --update \
-        $PHPIZE_DEPS \
         nano \
         iputils \
         bash \
         curl \
         git \
+    && apk add --no-cache --update --virtual .build-deps \
+        $PHPIZE_DEPS \
+        icu-dev \
     && pecl install xdebug \
-    && docker-php-ext-enable xdebug \
     && docker-php-ext-install \
         bcmath \
         mbstring \
         intl \
+    && docker-php-ext-enable \
+        xdebug \
+        bcmath \
+        mbstring \
+        intl \
     && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer \
-    && chmod -R 0777 $COMPOSER_HOME
+    && chmod -R 0777 $COMPOSER_HOME \
+    && apk del .build-deps
 
 COPY ./.docker /
 
