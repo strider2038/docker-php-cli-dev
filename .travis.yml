@@ -5,10 +5,9 @@ services:
   - docker
 
 script:
-  - docker build --pull --tag "strider2038/php-cli-dev" .
-  - docker build --build-arg PHP_VERSION=7.4 --pull --tag "strider2038/php-cli-dev:7.4" .
-  - docker build --build-arg PHP_VERSION=7.3 --pull --tag "strider2038/php-cli-dev:7.3" .
-  - docker build --build-arg PHP_VERSION=7.2 --pull --tag "strider2038/php-cli-dev:7.2" .
+  - docker build --pull --tag "strider2038/php-cli-dev" --tag "strider2038/php-cli-dev:7.4" .
+  - docker build --build-arg PHP_VERSION=7.3 --pull --tag "strider2038/php-cli-dev:7.3" --file Dockerfile.7.3 .
+  - docker build --build-arg PHP_VERSION=7.2 --pull --tag "strider2038/php-cli-dev:7.2" --file Dockerfile.7.3 .
   - docker images
 
 deploy:
