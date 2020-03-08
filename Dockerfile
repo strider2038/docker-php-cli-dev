@@ -14,14 +14,17 @@ RUN set -xe \
     && apk add --no-cache --update --virtual .build-deps \
         $PHPIZE_DEPS \
         icu-dev \
+        libxml2-dev \
     && pecl install xdebug \
     && docker-php-ext-install \
         bcmath \
         intl \
+        soap \
     && docker-php-ext-enable \
         xdebug \
         bcmath \
         intl \
+        soap \
     && runDeps="$( \
         scanelf --needed --nobanner --format '%n#p' --recursive /usr/local/lib/php/extensions \
             | tr ',' '\n' \
