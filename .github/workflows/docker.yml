@@ -40,5 +40,5 @@ jobs:
           build_args: PHP_VERSION=${{ matrix.php_version }}
           file: ${{ matrix.file }}
           always_pull: true
-          tags: strider2038/php-cli-dev:${{ matrix.tag }}
+          tags: ${{ matrix.tag }}
           tag_with_ref: true
