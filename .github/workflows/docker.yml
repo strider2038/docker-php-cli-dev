@@ -36,6 +36,7 @@ jobs:
 
       - uses: docker/build-push-action@v2
         with:
+          push: true
           repository: strider2038/php-cli-dev
           build_args: PHP_VERSION=${{ matrix.php_version }}
           file: ${{ matrix.file }}
