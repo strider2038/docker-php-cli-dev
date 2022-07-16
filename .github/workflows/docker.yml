@@ -11,10 +11,13 @@ jobs:
 
     strategy:
       matrix:
-        php_version: ['8.0']
+        php_version: ['8.1']
         file: ['Dockerfile']
-        tag: ['strider2038/php-cli-dev:latest', 'strider2038/php-cli-dev:8.0']
+        tag: ['strider2038/php-cli-dev:latest', 'strider2038/php-cli-dev:8.1']
         include:
+          - php_version: '8.0'
+            file: 'Dockerfile.8.0'
+            tag: 'strider2038/php-cli-dev:8.0'
           - php_version: '7.4'
             file: 'Dockerfile.7.4'
             tag: 'strider2038/php-cli-dev:7.4'
